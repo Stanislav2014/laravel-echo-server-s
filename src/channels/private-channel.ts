@@ -31,7 +31,13 @@ export class PrivateChannel {
             Log.info(`[${new Date().toISOString()}] - Sending auth request to: ${options.url}\n`);
         }
 
-        return this.serverRequest(socket, options);
+        // return this.serverRequest(socket, options);
+        return new Promise<any>((resolve, reject) => {
+            options.headers = this.prepareHeaders(socket, options);
+            let body;
+
+            resolve({channel_data: {}});
+        });
     }
 
     /**
